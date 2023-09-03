@@ -1,4 +1,5 @@
 ﻿using PropertyManagementSystem.Models;
+using PropertyManagementSystem.Models.DTO;
 
 namespace PropertyManagementSystem.Repositories.Contracts
 {
@@ -8,8 +9,8 @@ namespace PropertyManagementSystem.Repositories.Contracts
         Task<User> GetUserByUsername(string username);
         Task<User> GetUserByEmail(string email);
         Task<List<User>> GetAllUsers();
-        Task<User> CreateUser(User user);
-        Task<User> UpdateUser(int id, User user);
+        Task<User> CreateUser(UserCreateDto user);
+        Task<User> UpdateUser(int id, UserUpdateDto user);
         Task<User> DeleteUser(int id);
     }
 }
