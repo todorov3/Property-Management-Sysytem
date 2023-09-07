@@ -5,7 +5,7 @@
         public int Id { get; set; }
         public int LandlordId { get; set; }
         public string TownName { get; set; }
-        public string PropertyType { get; set; }
+        public string PropertyType { get; set; } //Enum
         public int Area { get; set; }
         public int NumOfRooms { get; set; }
         public int NumOfFloors { get; set; }

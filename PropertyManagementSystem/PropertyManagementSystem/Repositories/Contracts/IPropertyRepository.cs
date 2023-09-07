@@ -1,4 +1,5 @@
 ﻿using PropertyManagementSystem.Models;
+using PropertyManagementSystem.Models.DTO;
 
 namespace PropertyManagementSystem.Repositories.Contracts
 {
@@ -7,8 +8,8 @@ namespace PropertyManagementSystem.Repositories.Contracts
         Task<Property> GetPropertyById(int id);
         Task<List<Property>> GetPropertyByLandlordId(int id);
         Task<List<Property>> GetAllProperties();
-        Task<Property> CreateProperty(Property property);
-        Task<Property> UpdateProperty(Property property);
+        Task<Property> CreateProperty(PropertyCreateDto property);
+        Task<Property> UpdateProperty(int id, PropertyUpdateDto property);
         Task<Property> DeleteProperty(int id);
     }
 }

@@ -84,12 +84,12 @@ namespace PropertyManagementSystem.Repositories
 
             using var connection = _dapperContext.CreateConnection();
             {
-                await connection.ExecuteAsync(
+                var result = await connection.QuerySingleOrDefaultAsync<User>(
                                              "spUserCreate", 
                                              parameters, 
                                              commandType: 
                                              CommandType.StoredProcedure);
-                return GetUserByUsername(userDto.Username).Result;
+                return result;
             }
         }
 
