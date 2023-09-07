@@ -11,5 +11,6 @@ namespace PropertyManagementSystem.Repositories.Contracts
         Task<Property> CreateProperty(PropertyCreateDto property);
         Task<Property> UpdateProperty(int id, PropertyUpdateDto property);
         Task<Property> DeleteProperty(int id);
+        Task<Property> ArchiveProperty(int id);
     }
 }
