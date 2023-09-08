@@ -51,7 +51,7 @@ namespace PropertyManagementSystem.Repositories
             using var connection = _dapperContext.CreateConnection();
             {
                 return (await connection.QueryAsync<Property>(
-                                                        "spPropertyGetAll", 
+                                                        "spPropertiesGetAll", 
                                                         connection, 
                                                         commandType: 
                                                         CommandType.StoredProcedure))
@@ -63,8 +63,8 @@ namespace PropertyManagementSystem.Repositories
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("LandlordId", propertyDto.LandlordId, DbType.Int32);
-            parameters.Add("TownName", propertyDto.TownName, DbType.String);
-            parameters.Add("PropertyType", propertyDto.PropertyType, DbType.String);
+            parameters.Add("TownId", propertyDto.TownName, DbType.Int32);
+            parameters.Add("PropertyType", propertyDto.PropertyType, DbType.Int32);
             parameters.Add("Area", propertyDto.Area, DbType.Int32);
             parameters.Add("NumOfRooms", propertyDto.NumOfRooms, DbType.Int32);
             parameters.Add("NumOfFloors", propertyDto.NumOfFloors, DbType.Int32);
@@ -91,7 +91,7 @@ namespace PropertyManagementSystem.Repositories
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("PetsAllowed", property.PetsAllowed, DbType.Boolean);
             parameters.Add("Price", property.Price, DbType.Decimal);
-            parameters.Add("FreeDates", property.FreeDates, DbType.Date);
+            //parameters.Add("FreeDates", property.FreeDates, DbType.Date);
 
             using var connection = _dapperContext.CreateConnection();
             {
@@ -126,7 +126,7 @@ namespace PropertyManagementSystem.Repositories
             using var connection = _dapperContext.CreateConnection();
             {
                 return await connection.QuerySingleOrDefaultAsync<Property>(
-                                                                        "spPropertyArchived", 
+                                                                        "spPropertyArchive", 
                                                                         parameters, 
                                                                         commandType: 
                                                                         CommandType.StoredProcedure);
