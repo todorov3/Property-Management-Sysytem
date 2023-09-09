@@ -1,6 +1,6 @@
 ﻿namespace PropertyManagementSystem.Models
 {
-    public class Feedbacks
+    public class Feedback
     {
         public int Id { get; set; }
         public int PropertyId { get; set; }

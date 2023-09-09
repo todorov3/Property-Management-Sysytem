@@ -1,6 +1,17 @@
-﻿namespace PropertyManagementSystem.Repositories.Contracts
+﻿using PropertyManagementSystem.Models;
+using PropertyManagementSystem.Models.DTO;
+
+namespace PropertyManagementSystem.Repositories.Contracts
 {
     public interface IFeedbackRepository
     {
+        Task<Feedback> CreateFeedback(FeedbackCreateDto feedback);
+        Task<Feedback> UpdateFeedback(int id, FeedbackUpdateDto feedback);
+        Task<Feedback> GetFeedbackById(int id);
+        Task<List<Feedback>> GetAllFeedbacks();
+        Task<List<Feedback>> GetAllFeedbacksAsLandlord(int userId);
+        Task<List<Feedback>> GetAllFeedbacksAsTenand(int userId);
+        Task<double> GetAverageRatingAsLandlord(int userId);
+        Task<double> GetAverageRatingAsTenand(int userId);
     }
 }
