@@ -104,18 +104,18 @@ namespace PropertyManagementSystem.Repositories
             }
         }
 
-        public async Task<Property> DeleteProperty(int id)
+        public async Task DeleteProperty(int id)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("Id", id);
 
             using var connection = _dapperContext.CreateConnection();
             {
-                return await connection.QuerySingleOrDefaultAsync<Property>(
-                                                                        "spPropertyDelete", 
-                                                                        parameters, 
-                                                                        commandType: 
-                                                                        CommandType.StoredProcedure);
+                await connection.ExecuteAsync(
+                                            "spPropertyDelete", 
+                                            parameters, 
+                                            commandType: 
+                                            CommandType.StoredProcedure);
             }
         }
         public async Task<Property> ArchiveProperty(int id)
