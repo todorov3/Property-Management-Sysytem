@@ -118,18 +118,18 @@ namespace PropertyManagementSystem.Repositories
                                             CommandType.StoredProcedure);
             }
         }
-        public async Task<Property> ArchiveProperty(int id)
+        public async Task ArchiveProperty(int id)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("Id", id);
 
             using var connection = _dapperContext.CreateConnection();
             {
-                return await connection.QuerySingleOrDefaultAsync<Property>(
-                                                                        "spPropertyArchive", 
-                                                                        parameters, 
-                                                                        commandType: 
-                                                                        CommandType.StoredProcedure);
+                await connection.ExecuteAsync(
+                                            "spPropertyArchive", 
+                                            parameters, 
+                                            commandType: 
+                                            CommandType.StoredProcedure);
             }
         }
     }
