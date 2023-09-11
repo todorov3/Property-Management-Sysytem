@@ -48,28 +48,80 @@ namespace PropertyManagementSystem.Repositories
             }
         }
 
-        public Task<Request> GetRequestById(int id)
+        public async Task<Request> GetRequestById(int id)
         {
-            throw new NotImplementedException();
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("Id", id, DbType.Int32);
+
+            using var connection = _dapperContext.CreateConnection();
+            {
+                return await connection.QuerySingleOrDefaultAsync<Request>(
+                                                                        "spRequestGetById", 
+                                                                        connection, 
+                                                                        commandType: 
+                                                                        CommandType.StoredProcedure);
+            }
         }
 
-        public Task<List<Request>> GetRequestByTenandId(int id)
+        public async Task<List<Request>> GetRequestByTenandId(int id)
         {
-            throw new NotImplementedException();
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("Id", id, DbType.Int32);
+
+            using var connection = _dapperContext.CreateConnection();
+            {
+                return (await connection.QueryAsync<Request>(
+                                                        "spRequestGetByTenandId", 
+                                                        connection, 
+                                                        commandType: 
+                                                        CommandType.StoredProcedure))
+                                                        .ToList();
+            }
         }
 
-        public Task<List<Request>> GetRequestsByPropertyId(int propertyId)
+        public async Task<List<Request>> GetRequestsByPropertyId(int propertyId)
         {
-            throw new NotImplementedException();
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("PropertyId", propertyId, DbType.Int32);
+
+            using var connection = _dapperContext.CreateConnection();
+            {
+                return (await connection.QueryAsync<Request>(
+                                                        "spRequestGetByPropertyId", 
+                                                        connection, 
+                                                        commandType: 
+                                                        CommandType.StoredProcedure))
+                                                        .ToList();
+            }
         }
-        public Task AcceptRequest(int id)
+        public async Task AcceptRequest(int id)
         {
-            throw new NotImplementedException();
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("Id", id, DbType.Int32);
+
+            using var connection = _dapperContext.CreateConnection();
+            {
+                await connection.ExecuteAsync(
+                                            "spRequestAccept", 
+                                            connection, 
+                                            commandType: 
+                                            CommandType.StoredProcedure);
+            }
         }
 
-        public Task DeclineRequest(int id)
+        public async Task DeclineRequest(int id)
         {
-            throw new NotImplementedException();
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("Id", id, DbType.Int32);
+
+            using var connection = _dapperContext.CreateConnection();
+            {
+                await connection.ExecuteAsync(
+                                            "spRequestDecline", 
+                                            connection, 
+                                            commandType: 
+                                            CommandType.StoredProcedure);
+            }
         }
     }
 }
