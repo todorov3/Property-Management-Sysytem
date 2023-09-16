@@ -118,14 +118,14 @@ namespace PropertyManagementSystem.Repositories
             }
         }
 
-        public async Task<User> DeleteUser(int id)
+        public async Task DeleteUser(int id)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("Id", id, DbType.Int32);
 
             using var connection = _dapperContext.CreateConnection();
             {
-                return await connection.QuerySingleOrDefaultAsync<User>("spUserDelete", 
+                await connection.QuerySingleOrDefaultAsync<User>("spUserDelete", 
                                                                             parameters, 
                                                                             commandType: 
                                                                             CommandType.StoredProcedure);

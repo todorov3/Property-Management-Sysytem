@@ -13,7 +13,7 @@ namespace PropertyManagementSystem.Services
 
         public LandlordService(IPropertyRepository propertyRepository, IRequestRepository requestRepository)
         {
-            _prpertyRepository = propertyRepository;
+            _propertyRepository = propertyRepository;
             _requestRepository = requestRepository;
         }
 

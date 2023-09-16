@@ -11,6 +11,6 @@ namespace PropertyManagementSystem.Repositories.Contracts
         Task<List<User>> GetAllUsers();
         Task<User> CreateUser(UserCreateDto user);
         Task<User> UpdateUser(int id, UserUpdateDto user);
-        Task<User> DeleteUser(int id);
+        Task DeleteUser(int id);
     }
 }
