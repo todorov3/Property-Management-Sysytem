@@ -8,9 +8,9 @@ namespace PropertyManagementSystem.Services.Contracts
         Task<User> GetUserById(int id);
         Task<User> GetUserByUsername(string username);
         Task<User> GetUserByEmail(string email);
-        Task<User> GetAllUsers();
+        Task<List<User>> GetAllUsers();
         Task<User> CreateUser(UserCreateDto user);
-        Task<User> UpdateUser(UserUpdateDto user);
+        Task<User> UpdateUser(int id, UserUpdateDto user);
         Task DeleteUser(int id);
     }
 }
