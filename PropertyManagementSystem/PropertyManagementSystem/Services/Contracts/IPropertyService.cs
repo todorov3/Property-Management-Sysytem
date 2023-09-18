@@ -6,10 +6,10 @@ namespace PropertyManagementSystem.Services.Contracts
     public interface IPropertyService
     {
         Task<Property> GetPropertyById(int id);
-        Task<Property> GetPropertyByLandlordId(int id);
+        Task<List<Property>> GetPropertyByLandlordId(int id);
         Task<List<Property>> GetAllProperties();
         Task<Property> CreateProperty(PropertyCreateDto property);
-        Task<Property> UpdateProperty(PropertyUpdateDto property);
+        Task<Property> UpdateProperty(int id, PropertyUpdateDto property);
         Task DeleteProperty(int id);
         Task ArchiveProperty(int id);
     }

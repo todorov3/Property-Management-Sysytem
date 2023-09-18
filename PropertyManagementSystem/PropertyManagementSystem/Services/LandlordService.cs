@@ -17,36 +17,41 @@ namespace PropertyManagementSystem.Services
             _requestRepository = requestRepository;
         }
 
-        public Task<Property> CreateProperty(PropertyCreateDto property)
+        public async Task<Property> CreateProperty(PropertyCreateDto property)
         {
-            throw new NotImplementedException();
+            return await _propertyRepository.CreateProperty(property);
         }
 
-        public Task<Property> UpdateProperty(PropertyUpdateDto property)
+        public async Task<Property> UpdateProperty(int id, PropertyUpdateDto property)
         {
-            throw new NotImplementedException();
+            return await _propertyRepository.UpdateProperty(id, property);
         }
 
-        public Task<Property> DeleteProperty(int id)
+        public async Task DeleteProperty(int id)
         {
-            throw new NotImplementedException();
+            await _propertyRepository.DeleteProperty(id);
         }
 
         public async Task<Property> GetProperty(int id)
         {
             var property = await _propertyRepository.GetPropertyById(id);
-            CheckIsPropertyExists(id);
+            _ = CheckIsPropertyExists(id);
             return property;
         }
 
-        public Task<Property> AcceptRequest(int id)
+        public async Task AcceptRequest(int id)
         {
-            throw new NotImplementedException();
+            await _requestRepository.AcceptRequest(id);
         }
 
-        public Task<Property> DeclineRequest(int id)
+        public async Task DeclineRequest(int id)
         {
-            throw new NotImplementedException();
+            await _requestRepository.DeclineRequest(id);
+        }
+
+        public Task<List<Property>> GetAllProperties()
+        {
+            return _propertyRepository.GetAllProperties();
         }
 
         private async Task<Property> CheckIsPropertyExists(int id)

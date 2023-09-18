@@ -8,49 +8,45 @@ namespace PropertyManagementSystem.Services
     public class PropertyService : IPropertyService
     {
         private readonly IPropertyRepository _propertyRepository;
-        private readonly IUserService _userService;
-        public PropertyService()
+
+        public PropertyService(IPropertyRepository propertyRepository)
         {
-            
+            _propertyRepository = propertyRepository;
         }
 
         public Task<Property> GetPropertyById(int id)
         {
-            throw new NotImplementedException();
+            return _propertyRepository.GetPropertyById(id);
         }
 
-        public Task<Property> GetPropertyByLandlordId(int id)
+        public Task<List<Property>> GetPropertyByLandlordId(int id)
         {
-            throw new NotImplementedException();
+            return _propertyRepository.GetPropertyByLandlordId(id);
         }
 
         public async Task<List<Property>> GetAllProperties()
         {
-            var properties = await _propertyRepository.GetAllProperties();
-            foreach (var property in properties)
-            {
-                
-            }
+            return await _propertyRepository.GetAllProperties();
         }
 
-        public Task<Property> CreateProperty(PropertyCreateDto property)
+        public async Task<Property> CreateProperty(PropertyCreateDto property)
         {
-            throw new NotImplementedException();
+            return await _propertyRepository.CreateProperty(property);
         }
 
-        public Task<Property> UpdateProperty(PropertyUpdateDto property)
+        public async Task<Property> UpdateProperty(int id, PropertyUpdateDto property)
         {
-            throw new NotImplementedException();
+            return await _propertyRepository.UpdateProperty(id, property);
         }
 
-        public Task DeleteProperty(int id)
+        public async Task DeleteProperty(int id)
         {
-            throw new NotImplementedException();
+            await _propertyRepository.DeleteProperty(id);
         }
 
-        public Task ArchiveProperty(int id)
+        public async Task ArchiveProperty(int id)
         {
-            throw new NotImplementedException();
+            await _propertyRepository.ArchiveProperty(id);
         }
     }
 }
