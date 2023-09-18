@@ -63,7 +63,7 @@ namespace PropertyManagementSystem.Repositories
             }
         }
 
-        public async Task<List<Request>> GetRequestByTenandId(int id)
+        public async Task<List<Request>> GetRequestsByTenandId(int id)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("Id", id, DbType.Int32);
