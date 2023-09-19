@@ -26,6 +26,12 @@ namespace PropertyManagementSystem
             builder.Services.AddScoped<IFeedbackRepository, FeedbackRepository>();
 
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IPropertyService, PropertyService>();
+            builder.Services.AddScoped<IRequestService, RequestService>();
+            builder.Services.AddScoped<IFeedbackService, FeedbackService>();
+            builder.Services.AddScoped<IAdminService, AdminService>();
+            builder.Services.AddScoped<ILandlordService, LandlordService>();
+            builder.Services.AddScoped<ITenandService, TenandService>();
 
             var app = builder.Build();
 
