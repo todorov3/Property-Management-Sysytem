@@ -1,6 +1,11 @@
 ﻿namespace PropertyManagementSystem.Exceptions
 {
-    public class UnauthorizedOperationException
+    public class UnauthorizedOperationException : ApplicationException
     {
+        public UnauthorizedOperationException(string message) 
+            : base(message)
+        {
+            
+        }
     }
 }

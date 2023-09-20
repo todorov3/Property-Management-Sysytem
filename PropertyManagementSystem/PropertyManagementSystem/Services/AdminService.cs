@@ -26,7 +26,7 @@ namespace PropertyManagementSystem.Services
             {
                 var userToBlock = await _userRepository.GetUserById(id);
                 userToBlock.IsActive = false;
-                var updateUser = _mapper.Map<UserUpdateDto>(userToBlock);
+                //var updateUser = _mapper.Map<UserUpdateDto>(userToBlock);
                 return await _userRepository.UpdateUser(id, updateUser);
             }
             throw new UnauthorizedOperationException(CanNotBlockUser);
