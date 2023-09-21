@@ -72,7 +72,7 @@ namespace PropertyManagementSystem.Repositories
             }
         }
 
-        public async Task<User> CreateUser(UserCreateDto userDto)
+        public async Task<User> CreateUser(User userDto)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("FirstName", userDto.FirstName, DbType.String);
@@ -93,7 +93,7 @@ namespace PropertyManagementSystem.Repositories
             }
         }
 
-        public async Task<User> UpdateUser(int id, UserUpdateDto userDto)
+        public async Task<User> UpdateUser(int id, User userDto)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("Id", id, DbType.Int32);
@@ -106,7 +106,6 @@ namespace PropertyManagementSystem.Repositories
             parameters.Add("IsActive", userDto.IsActive, DbType.Boolean);
             parameters.Add("IsAdmin", userDto.IsAdmin, DbType.Boolean);
             parameters.Add("IsDeleted", userDto.IsDeleted, DbType.Boolean);
-            parameters.Add("UserPhoto", userDto.UserPhoto, DbType.String);
 
             using var connection = _dapperContext.CreateConnection();
             {
