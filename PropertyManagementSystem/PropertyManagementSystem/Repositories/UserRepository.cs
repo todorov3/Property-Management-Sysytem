@@ -72,7 +72,7 @@ namespace PropertyManagementSystem.Repositories
             }
         }
 
-        public async Task<User> CreateUser(User userDto)
+        public async Task<User> CreateUser(UserCreateDto userDto)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("FirstName", userDto.FirstName, DbType.String);

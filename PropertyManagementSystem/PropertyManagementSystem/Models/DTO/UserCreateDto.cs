@@ -40,5 +40,7 @@ namespace PropertyManagementSystem.Models.DTO
         [Required]
         [StringLength(PasswordMaxLength, MinimumLength = PasswordMinLength, ErrorMessage = "The password doesn't match.")]
         public string ConfirmPassword { get; set; }
+
+        public IFormFile? Photo { get; set; }
     }
 }

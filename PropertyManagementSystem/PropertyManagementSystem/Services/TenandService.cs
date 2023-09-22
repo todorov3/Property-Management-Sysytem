@@ -19,14 +19,14 @@ namespace PropertyManagementSystem.Services
             return await _feedbackService.CreateFeedback(feedback);
         }
 
-        public async Task<Request> CreateRequest()
+        public async Task<Request> CreateRequest(RequestCreateDto requestDto)
         {
-            return await _requestService.CreateRequest();
+            return await _requestService.CreateRequest(requestDto);
         }
 
         public async Task DeleteRequest(int id)
         {
-            await _requestService.DeleteRequest();
+            await _requestService.DeleteRequest(id);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace PropertyManagementSystem.Services.Contracts
 {
     public interface ITenandService
     {
-        Task<Request> CreateRequest();
+        Task<Request> CreateRequest(RequestCreateDto requestDto);
         Task DeleteRequest(int id);
         Task<Feedback> CreateFeedback(FeedbackCreateDto feedback);
     }
