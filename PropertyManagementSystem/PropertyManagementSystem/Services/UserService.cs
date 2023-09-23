@@ -13,7 +13,7 @@ namespace PropertyManagementSystem.Services
         {
             _userRepository = userRepository;
         }
-        public async Task<User> CreateUser(User user)
+        public async Task<User> CreateUser(UserCreateDto user)
         {
             return await _userRepository.CreateUser(user);
         }
