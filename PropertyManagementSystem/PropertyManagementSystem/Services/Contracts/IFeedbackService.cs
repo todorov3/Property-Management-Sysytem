@@ -6,6 +6,6 @@ namespace PropertyManagementSystem.Services.Contracts
     public interface IFeedbackService
     {
         Task<Feedback> CreateFeedback(FeedbackCreateDto feedback);
-        Task<Feedback> UpdateFeedback(FeedbackUpdateDto feedback);
+        Task<Feedback> UpdateFeedback(int id, FeedbackUpdateDto feedback);
     }
 }

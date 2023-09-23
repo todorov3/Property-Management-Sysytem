@@ -1,25 +1,26 @@
 ﻿using PropertyManagementSystem.Models;
 using PropertyManagementSystem.Models.DTO;
+using PropertyManagementSystem.Repositories.Contracts;
 using PropertyManagementSystem.Services.Contracts;
 
 namespace PropertyManagementSystem.Services
 {
     public class FeedbackService : IFeedbackService
     {
-        private readonly IFeedbackService _feedbackService;
+        private readonly IFeedbackRepository _feedbackRepository;
 
-        public FeedbackService(IFeedbackService feedbackService)
+        public FeedbackService(IFeedbackRepository feedbackRepository)
         {
-            _feedbackService = feedbackService;
+            _feedbackRepository = feedbackRepository;
         }
-        public Task<Feedback> CreateFeedback(FeedbackCreateDto feedback)
+        public async Task<Feedback> CreateFeedback(FeedbackCreateDto feedback)
         {
-            return _feedbackService.CreateFeedback(feedback);
+            return await _feedbackRepository.CreateFeedback(feedback);
         }
 
-        public Task<Feedback> UpdateFeedback(FeedbackUpdateDto feedback)
+        public async Task<Feedback> UpdateFeedback(int id, FeedbackUpdateDto feedback)
         {
-            return _feedbackService.UpdateFeedback(feedback);
+            return await _feedbackRepository.UpdateFeedback(id, feedback);
         }
     }
 }
