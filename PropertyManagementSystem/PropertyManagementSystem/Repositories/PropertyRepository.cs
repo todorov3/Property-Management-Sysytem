@@ -86,7 +86,7 @@ namespace PropertyManagementSystem.Repositories
             }
         }
 
-        public async Task<Property> UpdateProperty(int id, PropertyUpdateDto property)
+        public async Task<Property> UpdateProperty(int id, Property property)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("PetsAllowed", property.PetsAllowed, DbType.Boolean);

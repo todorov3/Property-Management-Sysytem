@@ -34,7 +34,7 @@ namespace PropertyManagementSystem.Services
             return await _propertyRepository.CreateProperty(property);
         }
 
-        public async Task<Property> UpdateProperty(int id, PropertyUpdateDto property)
+        public async Task<Property> UpdateProperty(int id, Property property)
         {
             return await _propertyRepository.UpdateProperty(id, property);
         }

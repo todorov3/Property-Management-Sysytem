@@ -9,7 +9,7 @@ namespace PropertyManagementSystem.Services.Contracts
         Task<List<Property>> GetPropertyByLandlordId(int id);
         Task<List<Property>> GetAllProperties();
         Task<Property> CreateProperty(PropertyCreateDto property);
-        Task<Property> UpdateProperty(int id, PropertyUpdateDto property);
+        Task<Property> UpdateProperty(int id, Property property);
         Task DeleteProperty(int id);
         Task ArchiveProperty(int id);
     }
