@@ -3,6 +3,7 @@ using PropertyManagementSystem.Repositories;
 using PropertyManagementSystem.Repositories.Contracts;
 using PropertyManagementSystem.Services;
 using PropertyManagementSystem.Services.Contracts;
+using Microsoft.OpenApi.Models;
 
 namespace PropertyManagementSystem
 {
@@ -17,7 +18,9 @@ namespace PropertyManagementSystem
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
 
-            builder.Services.AddScoped<DapperContext, DapperContext>();
+            builder.Services.AddHttpClient();
+
+            builder.Services.AddScoped<DapperContext>();
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -33,12 +36,31 @@ namespace PropertyManagementSystem
             builder.Services.AddScoped<ILandlordService, LandlordService>();
             builder.Services.AddScoped<ITenandService, TenandService>();
 
+            builder.Services.AddSwaggerGen(opt =>
+            {
+                opt.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Property Management System API",
+                    Description = "PMS API Swagger documentation",
+                    Version = "v1"
+                });
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
 
-            app.UseAuthorization();
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
 
+            app.UseRouting();
+
+            //app.UseAuthorization();
+
+            app.MapDefaultControllerRoute();
 
             app.MapControllers();
 

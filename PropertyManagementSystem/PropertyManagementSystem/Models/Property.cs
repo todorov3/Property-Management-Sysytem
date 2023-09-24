@@ -11,10 +11,10 @@
         public int NumOfFloors { get; set; }
         public int NumOfBedrooms { get; set; }
         public int NumOfBathrooms { get; set; }
-        public bool PetsAllowed { get; set; }
+        public bool? PetsAllowed { get; set; }
         public int YardArea { get; set; }
         public decimal Price { get; set; }
-        public IFormFile Photo { get; set; }
+        public IFormFile? Photo { get; set; }
         public DateOnly FreeDates { get; set; }
         public bool IsArchived { get; set; }
         public bool IsDeleted { get; set; }

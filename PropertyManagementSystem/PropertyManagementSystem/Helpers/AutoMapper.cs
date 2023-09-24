@@ -12,7 +12,7 @@ namespace PropertyManagementSystem.Helpers
             CreateMap<User, UserUpdateDto>().ReverseMap();
 
             CreateMap<Property, PropertyCreateDto>().ReverseMap();
-            CreateMap<Property,PropertyUpdateDto>().ReverseMap();
+            CreateMap<Property, PropertyUpdateDto>().ReverseMap();
 
             CreateMap<Feedback, FeedbackCreateDto>().ReverseMap();
             CreateMap<Feedback, FeedbackUpdateDto>().ReverseMap();
