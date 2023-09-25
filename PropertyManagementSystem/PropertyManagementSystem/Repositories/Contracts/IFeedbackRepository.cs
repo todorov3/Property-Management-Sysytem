@@ -11,6 +11,7 @@ namespace PropertyManagementSystem.Repositories.Contracts
         Task<List<Feedback>> GetAllFeedbacks();
         Task<List<Feedback>> GetAllFeedbacksAsLandlord(int userId);
         Task<List<Feedback>> GetAllFeedbacksAsTenand(int userId);
+        Task<List<Feedback>> GetAllFeedbacksByUserId(int userId);
         Task<double> GetAverageRatingAsLandlord(int userId);
         Task<double> GetAverageRatingAsTenand(int userId);
     }

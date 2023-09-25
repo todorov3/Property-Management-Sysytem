@@ -125,6 +125,22 @@ namespace PropertyManagementSystem.Repositories
             }
         }
 
+        public async Task<List<Feedback>> GetAllFeedbacksByUserId(int userId)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("Id", userId, DbType.Int32);
+
+            using var connection = _dapperContext.CreateConnection();
+            {
+                return (await connection.QueryAsync<Feedback>(
+                                                            "spFeedbackGetAllByUserId", 
+                                                            parameters, 
+                                                            commandType: 
+                                                            CommandType.StoredProcedure))
+                                                            .ToList();
+            }
+        }
+
         public async Task<Feedback> UpdateFeedback(int id, FeedbackUpdateDto feedback)
         {
             DynamicParameters parameters = new DynamicParameters();
