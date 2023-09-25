@@ -22,5 +22,40 @@ namespace PropertyManagementSystem.Services
         {
             return await _feedbackRepository.UpdateFeedback(id, feedback);
         }
+
+        public async Task<List<Feedback>> GetAllFeedbacksByUserId(int userId)
+        {
+            return await _feedbackRepository.GetAllFeedbacksByUserId(userId);
+        }
+
+        public async Task<Feedback> GetFeedbackById(int id)
+        {
+            return await _feedbackRepository.GetFeedbackById(id);
+        }
+
+        public async Task<List<Feedback>> GetAllFeedbacks()
+        {
+            return await _feedbackRepository.GetAllFeedbacks();
+        }
+
+        public async Task<List<Feedback>> GetAllFeedbacksAsLandlord(int userId)
+        {
+            return await _feedbackRepository.GetAllFeedbacksAsLandlord(userId);
+        }
+
+        public async Task<List<Feedback>> GetAllFeedbacksAsTenand(int userId)
+        {
+            return await _feedbackRepository.GetAllFeedbacksAsTenand(userId);
+        }
+
+        public async Task<double> GetAverageRatingAsLandlord(int userId)
+        {
+            return await _feedbackRepository.GetAverageRatingAsLandlord(userId);
+        }
+
+        public async Task<double> GetAverageRatingAsTenand(int userId)
+        {
+            return await _feedbackRepository.GetAverageRatingAsTenand(userId);
+        }
     }
 }
