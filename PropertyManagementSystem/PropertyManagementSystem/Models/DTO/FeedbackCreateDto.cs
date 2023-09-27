@@ -7,6 +7,6 @@
         public int CommentedUserId { get; set; }
         public bool IsAuthorLandlord { get; set; }
         public double Rating { get; set; }
-        public int PropertyId { get; set; }
+        public int RequestId { get; set; }
     }
 }

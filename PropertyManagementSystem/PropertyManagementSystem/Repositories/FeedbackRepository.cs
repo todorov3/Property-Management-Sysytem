@@ -18,12 +18,12 @@ namespace PropertyManagementSystem.Repositories
         public async Task<Feedback> CreateFeedback(FeedbackCreateDto feedback)
         {
             DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("RequestId", feedback.RequestId, DbType.Int32);
             parameters.Add("Content", feedback.Content, DbType.String);
             parameters.Add("AuthorId", feedback.AuthorId, DbType.Int32);
             parameters.Add("CommentedUserId", feedback.CommentedUserId, DbType.Int32);
             parameters.Add("IsAuthorLandlord", feedback.IsAuthorLandlord, DbType.Boolean);
-            parameters.Add("Rating", feedback.Rating, DbType.Double);
-            parameters.Add("PropertyId", feedback.PropertyId, DbType.Int32);
+            parameters.Add("Rating", feedback.Rating, DbType.Int32);
 
             using var connection = _dapperContext.CreateConnection();
             {
@@ -146,12 +146,12 @@ namespace PropertyManagementSystem.Repositories
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("Id", id, DbType.Int32);
             parameters.Add("Content", feedback.Content, DbType.String);
-            parameters.Add("Rating", feedback.Rating, DbType.Double);
+            parameters.Add("Rating", feedback.Rating, DbType.Int32);
 
             using var connection = _dapperContext.CreateConnection();
             {
                 await connection.ExecuteAsync(
-                                            "spFeedback", 
+                                            "spFeedbackUpdate", 
                                             parameters, 
                                             commandType: 
                                             CommandType.StoredProcedure);

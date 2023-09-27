@@ -3,7 +3,8 @@
     public class Feedback
     {
         public int Id { get; set; }
-        public int PropertyId { get; set; }
+        //public int PropertyId { get; set; }
+        public int RequestId { get; set; }
         public string Content { get; set; }
         public int AuthorId { get; set; }
         public int CommentedUserId { get; set; }
@@ -12,6 +13,6 @@
         public DateTime CreationDate { get; set; }
         public User Author { get; set; }
         public User CommentedUser { get; set; }
-        public Property Property { get; set; }
+        public Request Request { get; set; }
     }
 }
