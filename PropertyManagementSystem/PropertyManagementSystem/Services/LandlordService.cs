@@ -17,26 +17,9 @@ namespace PropertyManagementSystem.Services
             _requestRepository = requestRepository;
         }
 
-        public async Task<Property> CreateProperty(PropertyCreateDto property)
-        {
-            return await _propertyRepository.CreateProperty(property);
-        }
-
-        public async Task<Property> UpdateProperty(int id, PropertyUpdateDto property)
-        {
-            return await _propertyRepository.UpdateProperty(id, property);
-        }
-
-        public async Task DeleteProperty(int id)
-        {
-            await _propertyRepository.DeleteProperty(id);
-        }
-
         public async Task<Property> GetProperty(int id)
         {
-            var property = await _propertyRepository.GetPropertyById(id);
-            _ = CheckIsPropertyExists(id);
-            return property;
+            return await _propertyRepository.GetPropertyById(id);
         }
 
         public async Task AcceptRequest(int id)
@@ -54,14 +37,5 @@ namespace PropertyManagementSystem.Services
             return _propertyRepository.GetAllProperties();
         }
 
-        private async Task<Property> CheckIsPropertyExists(int id)
-        {
-            var property = await _propertyRepository.GetPropertyById(id);
-            if (property.IsDeleted == true || property.IsArchived == true || property == null)
-            {
-                throw new EntityNotFoundException("Property doesn't exists.");
-            }
-            return property;
-        }
     }
 }
