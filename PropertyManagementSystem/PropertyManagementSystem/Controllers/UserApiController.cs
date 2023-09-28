@@ -59,5 +59,12 @@ namespace PropertyManagementSystem.Controllers
 
             return Ok(_mapper.Map<UserUpdateDto>(updatedUser));
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            await _userService.DeleteUser(id);
+            return Ok();
+        }
     }
 }
