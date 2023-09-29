@@ -39,5 +39,12 @@ namespace PropertyManagementSystem.Controllers
             var newRequest = await _requestServce.CreateRequest(requestDto);
             return CreatedAtRoute("GetRequestById", new { id = newRequest.Id }, newRequest);
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteRequest(int id)
+        {
+            await _requestServce.DeleteRequest(id);
+            return Ok();
+        }
     }
 }
