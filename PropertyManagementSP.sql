@@ -200,3 +200,28 @@ BEGIN
 		WHERE Id = @Id
 END
 GO
+
+CREATE PROCEDURE spFeedbackGetAll
+AS
+BEGIN
+	SELECT * FROM Feedbacks
+END
+GO
+
+CREATE PROCEDURE spFeedbackGetAllAsLandlord
+	@UserId INT
+AS
+BEGIN
+	SELECT * FROM Feedbacks
+	WHERE CommentedUserId = @UserId AND IsAuthorLandlord = 0
+END
+GO
+
+CREATE PROCEDURE spFeedbackGetAllAsTenand
+	@UserId INT
+AS
+BEGIN
+	SELECT * FROM Feedbacks
+	WHERE CommentedUserId = @UserId AND IsAuthorLandlord = 1
+END
+GO
