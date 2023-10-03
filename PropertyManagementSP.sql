@@ -225,3 +225,21 @@ BEGIN
 	WHERE CommentedUserId = @UserId AND IsAuthorLandlord = 1
 END
 GO
+
+CREATE PROCEDURE spFeedbackGetById
+	@Id
+AS
+BEGIN
+	SELECT * FROM Feedbacks
+	WHERE Id = @Id
+END
+GO
+
+CREATE PROCEDURE spFeedbackGetAllByUserId
+	@Id
+AS
+BEGIN
+	SELECT * FROM Feedbacks
+	WHERE CommentedUserId = @Id
+END
+GO
