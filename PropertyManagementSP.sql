@@ -248,8 +248,8 @@ CREATE PROCEDURE spFeedbackGetAvgRatingAsLandlord
 AS
 BEGIN
 
-	SELECT AVG(Rating) FROM Feedbacks
-	WHERE CommentedUserId = @UserId AND IsAuthorLandlord = 0
+	SELECT CONVERT(DECIMAL(2,1), AVG(Rating)) FROM Feedbacks
+	WHERE CommentedUserId = 1 AND IsAuthorLandlord = 0
 END
 GO
 
@@ -258,7 +258,7 @@ CREATE PROCEDURE spFeedbackGetAvgRatingAsTenand
 AS
 BEGIN
 
-	SELECT AVG(Rating) FROM Feedbacks
-	WHERE CommentedUserId = @UserId AND IsAuthorLandlord = 1
+	SELECT CONVERT(DECIMAL(2,1), AVG(Rating)) FROM Feedbacks
+	WHERE CommentedUserId = 1 AND IsAuthorLandlord = 0
 END
 GO
