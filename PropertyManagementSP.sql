@@ -236,10 +236,30 @@ END
 GO
 
 CREATE PROCEDURE spFeedbackGetAllByUserId
-	@Id
+	@UserId
 AS
 BEGIN
 	SELECT * FROM Feedbacks
 	WHERE CommentedUserId = @Id
+END
+GO
+
+CREATE PROCEDURE spFeedbackGetAvgRatingAsLandlord
+	@UserId INT
+AS
+BEGIN
+
+	SELECT AVG(Rating) FROM Feedbacks
+	WHERE CommentedUserId = @UserId AND IsAuthorLandlord = 0
+END
+GO
+
+CREATE PROCEDURE spFeedbackGetAvgRatingAsTenand
+	@UserId INT
+AS
+BEGIN
+
+	SELECT AVG(Rating) FROM Feedbacks
+	WHERE CommentedUserId = @UserId AND IsAuthorLandlord = 1
 END
 GO
