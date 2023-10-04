@@ -113,35 +113,34 @@ CREATE PROCEDURE spPropertiesGetAll
 AS
 BEGIN
 	SELECT * FROM Properties
-	WHERE AND IsDeleted = 0 AND IsArchived = 0
+	WHERE IsDeleted = 0 AND IsArchived = 0
 END
 GO
 
 CREATE PROCEDURE spPropertyCreate
-	@LandlordId INT
-	@TownId INT
-	@PropertyType INT
-	@Area INT
-	@NumOfRooms INT
-	@NumOfFloors INT
-	@NumOfBedrooms INT
-	@NumOfBathrooms INT
-	@PetsAllowed BIT
-	@YardArea INT
-	@Price DECIMAL(10.2)
+	@LandlordId INT,
+	@TownId INT,
+	@PropertyType INT,
+	@Area INT,
+	@NumOfRooms INT,
+	@NumOfFloors INT,
+	@NumOfBedrooms INT,
+	@NumOfBathrooms INT,
+	@PetsAllowed BIT,
+	@YardArea INT,
+	@Price DECIMAL(10,2)
 AS
 BEGIN
 	SET NOCOUNT ON;
 	INSERT INTO Properties(LandlordId, TownId, PropertyType, Area, NumOfRooms, NumOfFloors, NumOfBedrooms, NumOfBathrooms, PetsAllowed, YardArea, Price)
 	VALUES(@LandlordId, @TownId, @PropertyType, @Area, @NumOfRooms, @NumOfFloors, @NumOfBedrooms, @NumOfBathrooms, @PetsAllowed, @YardArea, @Price)
-	SET @PropertyId = SCOPE_IDENTITY()
 END
 GO
 
 CREATE PROCEDURE spPropertyUpdate
-	@Id INT
-	@PetsAllowed BIT
-	@Price DECIMAL(10.2)
+	@Id INT,
+	@PetsAllowed BIT,
+	@Price DECIMAL(10,2)
 AS
 BEGIN
 	SET NOCOUNT ON;
@@ -173,11 +172,11 @@ END
 GO
 
 CREATE PROCEDURE spFeedbackCreate
-	@RequestId INT
-	@Content NVARCHAR(150)
-	@AuthorId INT
-	@CommentedUserId INT
-	@IsAuthorLandlord BIT
+	@RequestId INT,
+	@Content NVARCHAR(150),
+	@AuthorId INT,
+	@CommentedUserId INT,
+	@IsAuthorLandlord BIT,
 	@Rating INT
 AS
 BEGIN
@@ -188,8 +187,8 @@ END
 GO
 
 CREATE PROCEDURE spFeedbackUpdate
-	@Id INT
-	@Content NVARCHAR(150)
+	@Id INT,
+	@Content NVARCHAR(150),
 	@Rating INT
 AS
 BEGIN
@@ -227,7 +226,7 @@ END
 GO
 
 CREATE PROCEDURE spFeedbackGetById
-	@Id
+	@Id INT
 AS
 BEGIN
 	SELECT * FROM Feedbacks
@@ -236,11 +235,11 @@ END
 GO
 
 CREATE PROCEDURE spFeedbackGetAllByUserId
-	@UserId
+	@UserId INT
 AS
 BEGIN
 	SELECT * FROM Feedbacks
-	WHERE CommentedUserId = @Id
+	WHERE CommentedUserId = @UserId
 END
 GO
 
