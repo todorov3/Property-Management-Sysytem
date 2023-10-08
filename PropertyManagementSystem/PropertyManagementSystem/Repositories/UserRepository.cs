@@ -24,7 +24,7 @@ namespace PropertyManagementSystem.Repositories
             {
                 return await connection.QuerySingleOrDefaultAsync<User>(
                                                                     "spUserGetById", 
-                                                                    connection, 
+                                                                    parameters, 
                                                                     commandType: 
                                                                     CommandType.StoredProcedure);
             }
@@ -39,7 +39,7 @@ namespace PropertyManagementSystem.Repositories
             {
                 return await connection.QuerySingleOrDefaultAsync<User>(
                                                                     "spUserGetByUsername", 
-                                                                    connection, 
+                                                                    parameters, 
                                                                     commandType: 
                                                                     CommandType.StoredProcedure);
             }
@@ -54,7 +54,7 @@ namespace PropertyManagementSystem.Repositories
             {
                 return await connection.QuerySingleOrDefaultAsync<User>(
                                                                     "spUserGetByEmail", 
-                                                                    connection, 
+                                                                    parameters, 
                                                                     commandType: 
                                                                     CommandType.StoredProcedure);
             }

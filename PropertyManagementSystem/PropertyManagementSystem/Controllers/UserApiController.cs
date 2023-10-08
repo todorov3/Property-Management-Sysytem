@@ -26,19 +26,19 @@ namespace PropertyManagementSystem.Controllers
             return Ok(await _userService.GetAllUsers());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("byId/{id}")]
         public async Task<IActionResult> GetUserById(int id)
         {
             return Ok(await _userService.GetUserById(id));
         }
 
-        [HttpGet("{username}")]
+        [HttpGet("byUsername/{username}")]
         public async Task<IActionResult> GetUserByUsername(string username)
         {
             return Ok(await _userService.GetUserByUsername(username));
         }
 
-        [HttpGet("{email}")]
+        [HttpGet("byEmail/{email}")]
         public async Task<IActionResult> GetUserByEmail(string email)
         {
             return Ok(await _userService.GetUserByEmail(email));
