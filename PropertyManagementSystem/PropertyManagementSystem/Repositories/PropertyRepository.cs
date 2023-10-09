@@ -24,7 +24,7 @@ namespace PropertyManagementSystem.Repositories
             {
                 return await connection.QuerySingleOrDefaultAsync<Property>(
                                                                         "spPropertyGetById", 
-                                                                        connection, 
+                                                                        parameters, 
                                                                         commandType: 
                                                                         CommandType.StoredProcedure);
             }
@@ -39,7 +39,7 @@ namespace PropertyManagementSystem.Repositories
             {
                 return (await connection.QueryAsync<Property>(
                                                         "spPropertyGetByLandlordId", 
-                                                        connection, 
+                                                        parameters, 
                                                         commandType: 
                                                         CommandType.StoredProcedure))
                                                         .ToList();
