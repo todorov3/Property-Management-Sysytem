@@ -16,7 +16,7 @@ CREATE TABLE Users
 	IsAdmin BIT DEFAULT 0,
 	IsActive BIT DEFAULT 1,
 	IsDeleted BIT DEFAULT 0,
-	Photo VARBINARY(MAX),
+	UserPhoto VARBINARY(MAX),
 	CreateionDate DATETIME DEFAULT GETDATE()
 );
 
@@ -41,7 +41,7 @@ CREATE TABLE Properties
 	YardArea INT DEFAULT 0,
 	Price DECIMAL(10, 2),
 	Photo VARBINARY(MAX),
-	FreeDates DATE,
+	FreeDates DATETIME,
 	IsArchived BIT DEFAULT 0,
 	IsDeleted BIT DEFAULT 0,
 	FOREIGN KEY(LandlordId) REFERENCES Users(Id),
@@ -53,8 +53,8 @@ CREATE TABLE Requests
 	Id INT IDENTITY PRIMARY KEY,
 	TenandId INT NOT NULL,
 	PropertyId INT NOT NULL,
-	MoveIn DATE NOT NULL,
-	MoveOut DATE NOT NULL,
+	MoveIn DATETIME NOT NULL,
+	MoveOut DATETIME NOT NULL,
 	IsAccepted BIT,
 	FOREIGN KEY(TenandId) REFERENCES Users(Id),
 	FOREIGN KEY(PropertyId) REFERENCES Properties(Id)

@@ -19,13 +19,13 @@ namespace PropertyManagementSystem.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("")]
+        [HttpGet()]
         public async Task<IActionResult> GetAllProperties()
         {
             return Ok(await _propertyService.GetAllProperties());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("byId{id}")]
         public async Task<IActionResult> GetPropertyById(int id)
         {
             return Ok(await _propertyService.GetPropertyById(id));
