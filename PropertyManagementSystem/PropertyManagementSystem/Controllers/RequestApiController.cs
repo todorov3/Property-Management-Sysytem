@@ -27,8 +27,8 @@ namespace PropertyManagementSystem.Controllers
             return Ok(await _requestServce.GetRequestsByTenandId(tenandId));
         }
 
-        [HttpGet()]
-        public async Task<IActionResult> GetGetRequestsByPropertyId(int propertyId)
+        [HttpGet("{propertyId}")]
+        public async Task<IActionResult> GetRequestsByPropertyId(int propertyId)
         {
             return Ok(await _requestServce.GetRequestsByPropertyId(propertyId));
         }

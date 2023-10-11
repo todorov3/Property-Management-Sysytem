@@ -4,6 +4,7 @@ using PropertyManagementSystem.Repositories.Contracts;
 using PropertyManagementSystem.Services;
 using PropertyManagementSystem.Services.Contracts;
 using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.Options;
 
 namespace PropertyManagementSystem
 {
@@ -53,10 +54,16 @@ namespace PropertyManagementSystem
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Property Management System API v1");
+                    //c.RoutePrefix = "swagger";
+                });
             }
 
             app.UseRouting();
+
+            app.UseHttpsRedirection();
 
             //app.UseAuthorization();
 
