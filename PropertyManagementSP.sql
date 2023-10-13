@@ -217,11 +217,11 @@ END
 GO
 
 CREATE PROCEDURE spFeedbackGetAllAsTenand
-	@TenandId INT
+	@UserId INT
 AS
 BEGIN
 	SELECT * FROM Feedbacks
-	WHERE CommentedUserId = @TenandId AND IsAuthorLandlord = 1
+	WHERE CommentedUserId = @UserId AND IsAuthorLandlord = 1
 END
 GO
 

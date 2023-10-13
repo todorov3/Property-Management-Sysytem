@@ -66,7 +66,7 @@ namespace PropertyManagementSystem.Repositories
         public async Task<List<Feedback>> GetAllFeedbacksAsTenand(int userId)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("Id", userId , DbType.Int32);
+            parameters.Add("UserId", userId , DbType.Int32);
 
             using var connection = _dapperContext.CreateConnection();
             {
