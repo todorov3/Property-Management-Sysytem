@@ -208,11 +208,11 @@ END
 GO
 
 CREATE PROCEDURE spFeedbackGetAllAsLandlord
-	@LandlordId INT
+	@UserId INT
 AS
 BEGIN
 	SELECT * FROM Feedbacks
-	WHERE CommentedUserId = @LandlordId AND IsAuthorLandlord = 0
+	WHERE CommentedUserId = @UserId AND IsAuthorLandlord = 0
 END
 GO
 

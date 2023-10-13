@@ -47,10 +47,10 @@ namespace PropertyManagementSystem.Repositories
             }
         }
 
-        public async Task<List<Feedback>> GetAllFeedbacksAsLandlord(int landlordId)
+        public async Task<List<Feedback>> GetAllFeedbacksAsLandlord(int userId)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("Id", landlordId, DbType.Int32);
+            parameters.Add("UserId", userId, DbType.Int32);
 
             using var connections = _dapperContext.CreateConnection();
             {
