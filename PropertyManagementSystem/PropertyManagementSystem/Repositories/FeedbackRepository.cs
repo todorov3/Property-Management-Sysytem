@@ -82,12 +82,12 @@ namespace PropertyManagementSystem.Repositories
         public async Task<double> GetAverageRatingAsLandlord(int userId)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("Id", userId, DbType.Int32);
+            parameters.Add("UserId", userId, DbType.Int32);
 
             using var connection = _dapperContext.CreateConnection();
             {
                 return await connection.QuerySingleOrDefaultAsync<double>(
-                    "spFeedbackGetAverageRatingAsLandlord", 
+                    "spFeedbackGetAvgRatingAsLandlord", 
                     parameters, 
                     commandType: 
                     CommandType.StoredProcedure);
@@ -97,12 +97,12 @@ namespace PropertyManagementSystem.Repositories
         public async Task<double> GetAverageRatingAsTenand(int userId)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("Id", userId, DbType.Int32);
+            parameters.Add("UserId", userId, DbType.Int32);
 
             using var connection = _dapperContext.CreateConnection();
             {
                 return await connection.QuerySingleOrDefaultAsync<double>(
-                    "spFeedbackGetAverageRatingAsTenand", 
+                    "spFeedbackGetAvgRatingAsTenand", 
                     parameters, 
                     commandType: 
                     CommandType.StoredProcedure);
@@ -127,7 +127,7 @@ namespace PropertyManagementSystem.Repositories
         public async Task<List<Feedback>> GetAllFeedbacksByUserId(int userId)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("Id", userId, DbType.Int32);
+            parameters.Add("UserId", userId, DbType.Int32);
 
             using var connection = _dapperContext.CreateConnection();
             {

@@ -17,46 +17,48 @@ namespace PropertyManagementSystem.Controllers
             _mapper = maper;
         }
 
+        //[HttpPost("{id}")]
+
         [HttpGet("")]
         public async Task<IActionResult> GetAllFeedbacks()
         {
             return Ok(await _feedbackService.GetAllFeedbacks());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("/{id}")]
         public async Task<IActionResult> GetFeedbackById(int id)
         {
             return Ok(await _feedbackService.GetFeedbackById(id));
         }
 
-        [HttpGet("{landlordId}")]
-        public async Task<IActionResult> GetAllFeedbacksAsLandlord(int userId)
+        [HttpGet("byLandlordId/{landlordId}")]
+        public async Task<IActionResult> GetAllFeedbacksAsLandlord(int landlordId)
         {
-            return Ok(await _feedbackService.GetAllFeedbacksAsLandlord(userId));
+            return Ok(await _feedbackService.GetAllFeedbacksAsLandlord(landlordId));
         }
 
-        [HttpGet("{tenandId}")]
-        public async Task<IActionResult> GetAllFeedbacksAsTenand(int userId)
+        [HttpGet("byTenandId/{tenandId}")]
+        public async Task<IActionResult> GetAllFeedbacksAsTenand(int tenandId)
         {
-            return Ok(await _feedbackService.GetAllFeedbacksAsTenand(userId));
+            return Ok(await _feedbackService.GetAllFeedbacksAsTenand(tenandId));
         }
 
-        [HttpGet("{userId}")]
+        [HttpGet("byUserId/{userId}")]
         public async Task<IActionResult> GetAllFeedbacksByUserId(int userId)
         {
             return Ok(await _feedbackService.GetAllFeedbacksByUserId(userId));
         }
 
-        [HttpGet("landlord/rating/{landlordId}")]
-        public async Task<IActionResult> GetAverageRatingAsLandlord(int userId)
+        [HttpGet("ratingAs/{llId}")]
+        public async Task<IActionResult> GetAverageRatingAsLandlord(int llId)
         {
-            return Ok(await _feedbackService.GetAverageRatingAsLandlord(userId));
+            return Ok(await _feedbackService.GetAverageRatingAsLandlord(llId));
         }
 
-        [HttpGet("tenand/rating/{tenandId}")]
-        public async Task<IActionResult> GetAverageRatingAsTenand(int userId)
+        [HttpGet("rating/{tenandId}")]
+        public async Task<IActionResult> GetAverageRatingAsTenand(int tenandId)
         {
-            return Ok(await _feedbackService.GetAverageRatingAsTenand(userId));
+            return Ok(await _feedbackService.GetAverageRatingAsTenand(tenandId));
         }
     }
 }
