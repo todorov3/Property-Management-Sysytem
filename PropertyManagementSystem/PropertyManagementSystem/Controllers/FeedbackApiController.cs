@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using PropertyManagementSystem.Models;
+using PropertyManagementSystem.Models.DTO;
 using PropertyManagementSystem.Services.Contracts;
 
 namespace PropertyManagementSystem.Controllers
@@ -17,7 +19,12 @@ namespace PropertyManagementSystem.Controllers
             _mapper = maper;
         }
 
-        //[HttpPost("{id}")]
+        [HttpPost]
+        public async Task<IActionResult> CreateFeedback([FromBody] FeedbackCreateDto feedbackCreateDto)
+        {
+            var newFeedback = await _feedbackService.CreateFeedback(feedbackCreateDto);
+            return CreatedAtRoute("GetFeedbackById", new { id = newFeedback.Id }, newFeedback);
+        }
 
         [HttpGet("")]
         public async Task<IActionResult> GetAllFeedbacks()
