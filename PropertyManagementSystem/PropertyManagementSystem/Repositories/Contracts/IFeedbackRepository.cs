@@ -6,7 +6,6 @@ namespace PropertyManagementSystem.Repositories.Contracts
     public interface IFeedbackRepository
     {
         Task<Feedback> CreateFeedback(FeedbackCreateDto feedback);
-        Task<Feedback> UpdateFeedback(int id, FeedbackUpdateDto feedback);
         Task<Feedback> GetFeedbackById(int id);
         Task<List<Feedback>> GetAllFeedbacks();
         Task<List<Feedback>> GetAllFeedbacksAsLandlord(int userId);

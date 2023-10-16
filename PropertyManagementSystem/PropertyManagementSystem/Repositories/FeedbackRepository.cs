@@ -140,22 +140,5 @@ namespace PropertyManagementSystem.Repositories
             }
         }
 
-        public async Task<Feedback> UpdateFeedback(int id, FeedbackUpdateDto feedback)
-        {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("Id", id, DbType.Int32);
-            parameters.Add("Content", feedback.Content, DbType.String);
-            parameters.Add("Rating", feedback.Rating, DbType.Int32);
-
-            using var connection = _dapperContext.CreateConnection();
-            {
-                await connection.ExecuteAsync(
-                                            "spFeedbackUpdate", 
-                                            parameters, 
-                                            commandType: 
-                                            CommandType.StoredProcedure);
-                return GetFeedbackById(id).Result;
-            }
-        }
     }
 }

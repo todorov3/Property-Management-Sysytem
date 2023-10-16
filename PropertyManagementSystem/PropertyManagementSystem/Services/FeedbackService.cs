@@ -18,11 +18,6 @@ namespace PropertyManagementSystem.Services
             return await _feedbackRepository.CreateFeedback(feedback);
         }
 
-        public async Task<Feedback> UpdateFeedback(int id, FeedbackUpdateDto feedback)
-        {
-            return await _feedbackRepository.UpdateFeedback(id, feedback);
-        }
-
         public async Task<List<Feedback>> GetAllFeedbacksByUserId(int userId)
         {
             return await _feedbackRepository.GetAllFeedbacksByUserId(userId);
