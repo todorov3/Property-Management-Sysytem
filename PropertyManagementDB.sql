@@ -55,7 +55,7 @@ CREATE TABLE Requests
 	PropertyId INT NOT NULL,
 	MoveIn DATETIME NOT NULL,
 	MoveOut DATETIME NOT NULL,
-	IsAccepted BIT,
+	IsAccepted INT DEFAULT 0,
 	IsDeleted BIT DEFAULT 0
 	FOREIGN KEY(TenandId) REFERENCES Users(Id),
 	FOREIGN KEY(PropertyId) REFERENCES Properties(Id)

@@ -331,7 +331,7 @@ AS
 BEGIN
 	SET NOCOUNT ON;
 	UPDATE Requests
-	SET IsAccepted = 0
+	SET IsAccepted = 2
 	WHERE Id = @Id AND IsDeleted = 0 
 END
 GO
