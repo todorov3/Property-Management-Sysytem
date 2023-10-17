@@ -193,7 +193,7 @@ CREATE PROCEDURE spFeedbackUpdate
 AS
 BEGIN
 	SET NOCOUNT ON;
-	UPDATE Feedback
+	UPDATE Feedbacks
 	SET Content = ISNULL(@Content, Content),
 		Rating = ISNULL(@Rating, Rating)
 		WHERE Id = @Id
@@ -248,8 +248,8 @@ CREATE PROCEDURE spFeedbackGetAvgRatingAsLandlord
 AS
 BEGIN
 
-	SELECT CONVERT(DECIMAL(2,1), AVG(Rating)) FROM Feedbacks
-	WHERE CommentedUserId = 1 AND IsAuthorLandlord = 0
+	SELECT CONVERT(DECIMAL(2,1), AVG(CAST(Rating AS DECIMAL))) FROM Feedbacks
+	WHERE CommentedUserId = @UserId AND IsAuthorLandlord = 0
 END
 GO
 
@@ -258,7 +258,80 @@ CREATE PROCEDURE spFeedbackGetAvgRatingAsTenand
 AS
 BEGIN
 
-	SELECT CONVERT(DECIMAL(2,1), AVG(Rating)) FROM Feedbacks
-	WHERE CommentedUserId = 1 AND IsAuthorLandlord = 0
+	SELECT CONVERT(DECIMAL(2,1), AVG(CAST(Rating AS DECIMAL))) FROM Feedbacks
+	WHERE CommentedUserId = @UserId AND IsAuthorLandlord = 1
+END
+GO
+
+CREATE PROCEDURE spRequestCreate
+	@TenandId INT,
+	@PropertyId INT,
+	@MoveIn DATETiME,
+	@MoveOut DATETIME
+AS
+BEGIN
+	SET NOCOUNT ON;
+	INSERT INTO Requests (TenandId, PropertyId, MoveIn, MoveOut)
+	VALUES (@TenandId, @PropertyId, @MoveIn, @MoveOut)
+END
+GO
+
+CREATE PROCEDURE spRequestDelete
+	@Id INT
+AS
+BEGIN
+	SET NOCOUNT ON;
+	UPDATE Requests
+	SET IsDeleted = 1
+	WHERE Id = @Id AND IsDeleted = 0
+END
+GO
+
+CREATE PROCEDURE spRequestGetById
+	@Id INT
+AS
+BEGIN
+	SELECT * FROM Requests
+	WHERE Id = @Id AND IsDeleted = 0
+END
+GO
+
+CREATE PROCEDURE spRequestGetByTenandId
+	@TenandId INT
+AS
+BEGIN
+	SELECT * FROM Requests
+	WHERE TenandId = @TenandId AND IsDeleted = 0
+END
+GO
+
+CREATE PROCEDURE spRequestGetByPropertyId
+	@PropertyId INT
+AS
+BEGIN
+	SELECT * FROM Requests
+	WHERE PropertyId = @PropertyId AND IsDeleted = 0
+END
+GO
+
+CREATE PROCEDURE spRequestAccept
+	@Id INT
+AS
+BEGIN
+	SET NOCOUNT ON;
+	UPDATE Requests
+	SET IsAccepted = 1
+	WHERE Id = @Id AND IsDeleted = 0
+END
+GO
+
+CREATE PROCEDURE spRequestDecline
+	@Id INT
+AS
+BEGIN
+	SET NOCOUNT ON;
+	UPDATE Requests
+	SET IsAccepted = 0
+	WHERE Id = @Id AND IsDeleted = 0 
 END
 GO

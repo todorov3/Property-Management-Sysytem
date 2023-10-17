@@ -17,7 +17,7 @@ CREATE TABLE Users
 	IsActive BIT DEFAULT 1,
 	IsDeleted BIT DEFAULT 0,
 	UserPhoto VARBINARY(MAX),
-	CreateionDate DATETIME DEFAULT GETDATE()
+	CreatedDate DATETIME DEFAULT GETDATE()
 );
 
 CREATE TABLE Towns
@@ -56,6 +56,7 @@ CREATE TABLE Requests
 	MoveIn DATETIME NOT NULL,
 	MoveOut DATETIME NOT NULL,
 	IsAccepted BIT,
+	IsDeleted BIT DEFAULT 0
 	FOREIGN KEY(TenandId) REFERENCES Users(Id),
 	FOREIGN KEY(PropertyId) REFERENCES Properties(Id)
 );
@@ -69,7 +70,7 @@ CREATE TABLE Feedbacks
 	CommentedUserId INT NOT NULL,
 	IsAuthorLandlord BIT,
 	Rating INT NOT NULL,
-	CreationDate DATETIME DEFAULT GETDATE(),
+	CreatedDate DATETIME DEFAULT GETDATE(),
 	FOREIGN KEY(RequestId) REFERENCES Requests(Id),
 	FOREIGN KEY(AuthorId) REFERENCES Users(Id),
 	FOREIGN KEY(CommentedUserId) REFERENCES Users(Id)
