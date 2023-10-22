@@ -16,6 +16,7 @@ namespace PropertyManagementSystem.Helpers
 
             CreateMap<Feedback, FeedbackCreateDto>().ReverseMap();
             CreateMap<Feedback, FeedbackUpdateDto>().ReverseMap();
+            CreateMap<Feedback, FeedbackResponseDto>().ReverseMap();
 
             CreateMap<Request, RequestCreateDto>().ReverseMap();
         }
