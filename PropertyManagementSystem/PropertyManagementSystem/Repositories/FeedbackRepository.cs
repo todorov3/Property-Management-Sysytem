@@ -15,7 +15,7 @@ namespace PropertyManagementSystem.Repositories
         {
             _dapperContext = dapperContext;
         }
-        public async Task<Feedback> CreateFeedback(FeedbackCreateDto feedback)
+        public async Task<Feedback> CreateFeedback(Feedback feedback)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("RequestId", feedback.RequestId, DbType.Int32);
