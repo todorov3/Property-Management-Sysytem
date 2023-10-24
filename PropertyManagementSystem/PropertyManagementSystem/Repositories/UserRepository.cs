@@ -72,15 +72,15 @@ namespace PropertyManagementSystem.Repositories
             }
         }
 
-        public async Task<User> CreateUser(UserCreateDto userDto)
+        public async Task<User> CreateUser(User user)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("FirstName", userDto.FirstName, DbType.String);
-            parameters.Add("LastName", userDto.LastName, DbType.String);
-            parameters.Add("Username", userDto.Username, DbType.String);
-            parameters.Add("Email", userDto.Email, DbType.String);
-            parameters.Add("PhoneNumber", userDto.PhoneNumber, DbType.String);
-            parameters.Add("UserPassword", userDto.UserPassword, DbType.String);
+            parameters.Add("FirstName", user.FirstName, DbType.String);
+            parameters.Add("LastName", user.LastName, DbType.String);
+            parameters.Add("Username", user.Username, DbType.String);
+            parameters.Add("Email", user.Email, DbType.String);
+            parameters.Add("PhoneNumber", user.PhoneNumber, DbType.String);
+            parameters.Add("UserPassword", user.UserPassword, DbType.String);
 
             using var connection = _dapperContext.CreateConnection();
             {
