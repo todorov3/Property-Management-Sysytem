@@ -12,21 +12,19 @@ namespace PropertyManagementSystem.Controllers
     public class UserApiController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly IMapper _mapper;
 
-        public UserApiController(IUserService userService, IMapper mapper)
+        public UserApiController(IUserService userService)
         {
             _userService = userService;
-            _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet("")]
         public async Task<IActionResult> GetAllUsers()
         {
             return Ok(await _userService.GetAllUsers());
         }
 
-        [HttpGet("byId/{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById(int id)
         {
             return Ok(await _userService.GetUserById(id));
@@ -51,16 +49,16 @@ namespace PropertyManagementSystem.Controllers
             return CreatedAtRoute("GetUserById", new { id = newUser.Id }, newUser);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, [FromBody] UserUpdateDto userUpdate)
         {
-            var userToUpdate = _mapper.Map<User>(userUpdate);
-            var updatedUser = await _userService.UpdateUser(id, userToUpdate);
-
-            return Ok(_mapper.Map<UserUpdateDto>(updatedUser));
+            //var updatedUser = await _userService.UpdateUser(id, userUpdate);
+            var userToUpdate = await _userService.GetUserById(id);
+            _ = await _userService.UpdateUser(id, userUpdate);
+            return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             await _userService.DeleteUser(id);

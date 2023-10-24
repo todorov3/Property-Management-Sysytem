@@ -42,7 +42,7 @@ namespace PropertyManagementSystem.Controllers
             return Ok(await _feedbackService.GetAllFeedbacksAsLandlord(landlordId));
         }
 
-        [HttpGet("byTenandId/{tenandId}")]
+        [HttpGet("byTenantId/{tenantId}")]
         public async Task<IActionResult> GetAllFeedbacksAsTenand(int tenandId)
         {
             return Ok(await _feedbackService.GetAllFeedbacksAsTenand(tenandId));
@@ -60,7 +60,7 @@ namespace PropertyManagementSystem.Controllers
             return Ok(await _feedbackService.GetAverageRatingAsLandlord(llId));
         }
 
-        [HttpGet("rating/{tenandId}")]
+        [HttpGet("rating/{tenantId}")]
         public async Task<IActionResult> GetAverageRatingAsTenand(int tenandId)
         {
             return Ok(await _feedbackService.GetAverageRatingAsTenand(tenandId));
