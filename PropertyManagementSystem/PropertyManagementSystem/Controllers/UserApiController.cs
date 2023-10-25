@@ -50,11 +50,11 @@ namespace PropertyManagementSystem.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(int id, [FromBody] UserUpdateDto userUpdate)
+        public async Task<IActionResult> UpdateUser(int id, UserUpdateDto userUpdate)
         {
             //var updatedUser = await _userService.UpdateUser(id, userUpdate);
             var userToUpdate = await _userService.GetUserById(id);
-            _ = await _userService.UpdateUser(id, userUpdate);
+            userToUpdate = await _userService.UpdateUser(id, userUpdate);
             return Ok();
         }
 
