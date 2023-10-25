@@ -10,7 +10,7 @@ namespace PropertyManagementSystem.Services.Contracts
         Task<User> GetUserByEmail(string email);
         Task<List<User>> GetAllUsers();
         Task<User> CreateUser(UserCreateDto user);
-        Task<User> UpdateUser(int id, User user);
+        Task<User> UpdateUser(int id, UserUpdateDto user);
         Task DeleteUser(int id);
     }
 }
