@@ -21,7 +21,7 @@ namespace PropertyManagementSystem.Controllers
             return Ok(await _requestService.GetRequestById(id));
         }
 
-        [HttpGet("tenand/{tenandId}")]
+        [HttpGet("tenant/{tenandId}")]
         public async Task<IActionResult> GetRequestByTenandId(int tenandId)
         {
             return Ok(await _requestService.GetRequestsByTenandId(tenandId));
@@ -37,8 +37,8 @@ namespace PropertyManagementSystem.Controllers
         public async Task<IActionResult> CreateRequest([FromBody] RequestCreateDto requestDto)
         {
             var newRequest = await _requestService.CreateRequest(requestDto);
-            //return CreatedAtRoute("GetRequestById", new { id = newRequest.Id }, newRequest);
-            return Ok(newRequest);
+            return CreatedAtRoute("GetRequestById", new { id = newRequest.Id }, newRequest);
+            //return Ok(newRequest);
         }
 
         [HttpDelete("{id}")]
