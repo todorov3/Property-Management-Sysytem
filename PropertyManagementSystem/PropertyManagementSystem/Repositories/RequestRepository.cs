@@ -14,10 +14,10 @@ namespace PropertyManagementSystem.Repositories
         {
             _dapperContext = dapperContext;
         }
-        public async Task<Request> CreateRequest(RequestCreateDto requestDto)
+        public async Task<Request> CreateRequest(Request requestDto)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("TenandId", requestDto.TenandId, DbType.Int32);
+            parameters.Add("TenandId", requestDto.TenantId, DbType.Int32);
             parameters.Add("PropertyId", requestDto.PropertyId, DbType.Int32);
             parameters.Add("MoveIn", requestDto.MoveIn, DbType.Date);
             parameters.Add("MoveOut", requestDto.MoveOut, DbType.Date);
@@ -66,7 +66,7 @@ namespace PropertyManagementSystem.Repositories
         public async Task<List<Request>> GetRequestsByTenandId(int id)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("Id", id, DbType.Int32);
+            parameters.Add("TenandId", id, DbType.Int32);
 
             using var connection = _dapperContext.CreateConnection();
             {
@@ -94,6 +94,7 @@ namespace PropertyManagementSystem.Repositories
                                                         .ToList();
             }
         }
+
         public async Task AcceptRequest(int id)
         {
             DynamicParameters parameters = new DynamicParameters();

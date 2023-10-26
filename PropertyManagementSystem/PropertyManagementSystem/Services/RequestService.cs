@@ -1,4 +1,5 @@
-﻿using PropertyManagementSystem.Models;
+﻿using AutoMapper;
+using PropertyManagementSystem.Models;
 using PropertyManagementSystem.Models.DTO;
 using PropertyManagementSystem.Repositories.Contracts;
 using PropertyManagementSystem.Services.Contracts;
@@ -8,15 +9,18 @@ namespace PropertyManagementSystem.Services
     public class RequestService : IRequestService
     {
         private readonly IRequestRepository _requestRepository;
+        private readonly IMapper _mapper;
 
-        public RequestService(IRequestRepository requestRepository)
+        public RequestService(IRequestRepository requestRepository, IMapper mapper)
         {
             _requestRepository = requestRepository;
+            _mapper = mapper;
         }
 
         public async Task<Request> CreateRequest(RequestCreateDto request)
         {
-            return await _requestRepository.CreateRequest(request);
+            var newRequest = _mapper.Map<Request>(request);
+            return await _requestRepository.CreateRequest(newRequest);
         }
 
         public async Task DeleteRequest(int id)

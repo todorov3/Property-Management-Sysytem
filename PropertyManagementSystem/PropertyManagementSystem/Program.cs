@@ -35,7 +35,7 @@ namespace PropertyManagementSystem
             builder.Services.AddScoped<IFeedbackService, FeedbackService>();
             builder.Services.AddScoped<IAdminService, AdminService>();
             builder.Services.AddScoped<ILandlordService, LandlordService>();
-            builder.Services.AddScoped<ITenandService, TenandService>();
+            builder.Services.AddScoped<ITenantService, TenantService>();
 
             builder.Services.AddSwaggerGen(opt =>
             {

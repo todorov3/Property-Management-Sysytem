@@ -5,7 +5,7 @@ namespace PropertyManagementSystem.Repositories.Contracts
 {
     public interface IRequestRepository
     {
-        Task<Request> CreateRequest(RequestCreateDto requestDto);
+        Task<Request> CreateRequest(Request requestDto);
         Task DeleteRequest(int id);
         Task<Request> GetRequestById(int id);
         Task<List<Request>> GetRequestsByTenandId(int id);
