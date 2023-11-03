@@ -1,6 +1,7 @@
 using AutoMapper;
 using Moq;
 using PropertyManagementSystem.Models;
+using PropertyManagementSystem.Models.DTO;
 using PropertyManagementSystem.Repositories;
 using PropertyManagementSystem.Repositories.Contracts;
 using PropertyManagementSystem.Services;
@@ -65,7 +66,7 @@ namespace PropertyManagementSystem.Tests
             var result = await userService.GetUserById(id);
 
             //Assert.IsNotNull(result);
-            Assert.AreEqual(expectedUser.Id, result.Id);    
+            Assert.AreEqual(expectedUser.Id, result.Id);
         }
 
         [TestMethod]
@@ -90,8 +91,32 @@ namespace PropertyManagementSystem.Tests
 
             Assert.IsNotNull(result);
             Assert.AreEqual(expectedUser.Email, result.Email);
+        }
 
+        [TestMethod]
+        public async Task TestCreateUser()
+        {
+            var newUser = new UserCreateDto()
+            {
+                Username = "Test",
+                Email = "testmail@test.com",
+                UserPassword = "123"
+            };
 
+            var expectedUser = new User
+            {
+                Username = newUser.Username,
+                Email = newUser.Email,
+                UserPassword = newUser.UserPassword
+            };
+
+            _userRepositoryMock.Setup(repo => repo.CreateUser(It.IsAny<User>())).ReturnsAsync(expectedUser);
+
+            var result = _userService.CreateUser(newUser);
+
+            var userResult = await result;
+
+            Assert.AreEqual(expectedUser.Username, userResult.Username);
         }
     }
 }
