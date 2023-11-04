@@ -24,28 +24,6 @@ namespace PropertyManagementSystem.Tests
             _userService = new UserService(_userRepositoryMock.Object, _mapperMock.Object);
         }
 
-        //[TestMethod]
-        //public async void ReturnCorrectUserById()
-        //{
-        //    int userId = 1;
-        //    User expectedUser = new User 
-        //    { 
-        //        Id = userId, 
-        //        FirstName = "First", 
-        //        LastName = "Last", 
-        //        Username = "Username", 
-        //        Email = "email@Mail.com", 
-        //        PhoneNumber = "0000000000", 
-        //        UserPassword = "123"
-        //    };
-
-        //    _userRepositoryMock.Setup(repo => repo.GetUserById(userId)).ReturnsAsync(expectedUser);
-
-        //    var result = await _userService.GetUserById(userId);
-
-        //    Assert.AreEqual(expectedUser.Id, result.Id);
-        //}
-
         [TestMethod]
         public async Task GetUserById_WhenValidId_ReturnsUser()
         {
@@ -65,7 +43,6 @@ namespace PropertyManagementSystem.Tests
 
             var result = await userService.GetUserById(id);
 
-            //Assert.IsNotNull(result);
             Assert.AreEqual(expectedUser.Id, result.Id);
         }
 
@@ -92,6 +69,29 @@ namespace PropertyManagementSystem.Tests
             Assert.IsNotNull(result);
             Assert.AreEqual(expectedUser.Email, result.Email);
         }
+        [TestMethod]
+        public async Task TestGetUserByUsername()
+        {
+            var username = "username";
+
+            var expectedUser = new User
+            {
+                Id = 1,
+                FirstName = "First",
+                LastName = "Last",
+                Username = username,
+                Email = "testmail@mail.com",
+                PhoneNumber = "0000000000",
+                UserPassword = "123"
+            };
+
+            _userRepositoryMock.Setup(repo => repo.GetUserByUsername(username)).ReturnsAsync(expectedUser);
+
+            var result = await _userService.GetUserByUsername(username);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(expectedUser.Username, result.Username);
+        }
 
         [TestMethod]
         public async Task TestCreateUser()
@@ -116,7 +116,83 @@ namespace PropertyManagementSystem.Tests
 
             var userResult = await result;
 
+            Assert.IsNotNull(userResult);
             Assert.AreEqual(expectedUser.Username, userResult.Username);
+        }
+
+        [TestMethod]
+        public async Task TestUserUpdate()
+        {
+            int id = 1;
+            var newUser = new UserUpdateDto()
+            {
+                FirstName = "TestFirstName",
+                LastName = "TestLastName",
+                Username = "TestUsername",
+                Email = "test@email.com"
+            };
+
+            var user = new User()
+            {
+                Id = id,
+                FirstName = "OldFirstName",
+                LastName = "OldLastName",
+                Username = "OldUsername",
+                Email = "old@email.com"
+            };
+
+            _userRepositoryMock.Setup(repo => repo.GetUserById(id)).ReturnsAsync(user);
+
+            var updatedUser = new User()
+            {
+                Id = id,
+                FirstName = newUser.FirstName,
+                LastName = newUser.LastName,
+                Username = newUser.Username,
+                Email = newUser.Email
+            };
+
+            _userRepositoryMock.Setup(repo => repo.UpdateUser(id, It.IsAny<User>())).ReturnsAsync(updatedUser);
+
+            var result = await _userService.UpdateUser(id, newUser);
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual(updatedUser.FirstName, result.FirstName);
+            Assert.AreEqual(updatedUser.LastName, result.LastName);
+            Assert.AreEqual(updatedUser.Username, result.Username);
+            Assert.AreEqual(updatedUser.Email, result.Email);
+        }
+
+        [TestMethod]
+        public async Task TestGetAllUsers()
+        {
+            var expectedUsers = new List<User>
+            {
+                new User
+                {
+                    Id = 1,
+                    FirstName = "TestUser1",
+                    LastName = "TestUser1Family",
+                    Username = "TestUsername1",
+                    Email = "email1@email.com"
+                },
+
+                new User
+                {
+                    Id = 2,
+                    FirstName = "TestUser2",
+                    LastName = "TestUser2Family",
+                    Username = "TestUsername2",
+                    Email = "email2@email.com"
+                }
+            };
+
+            _userRepositoryMock.Setup(repo => repo.GetAllUsers()).ReturnsAsync(expectedUsers);
+
+            var result = await _userService.GetAllUsers();
+
+            Assert.IsNotNull(result);
+            CollectionAssert.AreEqual(expectedUsers, result);
         }
     }
 }
