@@ -1,4 +1,5 @@
-﻿using PropertyManagementSystem.Exceptions;
+﻿using AutoMapper;
+using PropertyManagementSystem.Exceptions;
 using PropertyManagementSystem.Models;
 using PropertyManagementSystem.Models.DTO;
 using PropertyManagementSystem.Repositories.Contracts;
@@ -9,10 +10,12 @@ namespace PropertyManagementSystem.Services
     public class PropertyService : IPropertyService
     {
         private readonly IPropertyRepository _propertyRepository;
+        private readonly IMapper _mapper;
 
-        public PropertyService(IPropertyRepository propertyRepository)
+        public PropertyService(IPropertyRepository propertyRepository, IMapper mapper)
         {
             _propertyRepository = propertyRepository;
+            _mapper = mapper;
         }
 
         public async Task<Property> GetPropertyById(int id)
