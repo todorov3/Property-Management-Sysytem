@@ -3,7 +3,7 @@
     public class Request
     {
         public int Id { get; set; }
-        public int TenantId { get; set; }
+        public int TenandId { get; set; }
         public int PropertyId { get; set; }
         public DateTime MoveIn { get; set; }
         public DateTime MoveOut { get; set; }

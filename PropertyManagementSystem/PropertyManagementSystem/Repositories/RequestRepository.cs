@@ -17,7 +17,7 @@ namespace PropertyManagementSystem.Repositories
         public async Task<Request> CreateRequest(Request requestDto)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("TenandId", requestDto.TenantId, DbType.Int32);
+            parameters.Add("TenandId", requestDto.TenandId, DbType.Int32);
             parameters.Add("PropertyId", requestDto.PropertyId, DbType.Int32);
             parameters.Add("MoveIn", requestDto.MoveIn, DbType.Date);
             parameters.Add("MoveOut", requestDto.MoveOut, DbType.Date);
