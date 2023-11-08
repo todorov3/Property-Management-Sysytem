@@ -22,39 +22,39 @@ namespace PropertyManagementSystem.Services
             return await _feedbackRepository.CreateFeedback(feedback);
         }
 
-        public async Task<List<FeedbackResponseDto>> GetAllFeedbacksByUserId(int userId)
+        public async Task<List<Feedback>> GetAllFeedbacksByUserId(int userId)
         {
             var feedbacks = await _feedbackRepository.GetAllFeedbacksByUserId(userId);
-            var feedbackDtos = _mapper.Map<List<FeedbackResponseDto>>(feedbacks);
-            return feedbackDtos;
+            //var feedbackDtos = _mapper.Map<List<FeedbackResponseDto>>(feedbacks);
+            return feedbacks;
         }
 
-        public async Task<FeedbackResponseDto> GetFeedbackById(int id)
+        public async Task<Feedback> GetFeedbackById(int id)
         {
             var feedback = await _feedbackRepository.GetFeedbackById(id);
-            var feedbackDto = _mapper.Map<FeedbackResponseDto>(feedback);
-            return feedbackDto;
+            //var feedbackDto = _mapper.Map<FeedbackResponseDto>(feedback);
+            return feedback;
         }
 
-        public async Task<List<FeedbackResponseDto>> GetAllFeedbacks()
+        public async Task<List<Feedback>> GetAllFeedbacks()
         {
             var feedbacks = await _feedbackRepository.GetAllFeedbacks();
             var feedbackDtos = _mapper.Map<List<FeedbackResponseDto>>(feedbacks);
-            return feedbackDtos;
+            return feedbacks;
         }
 
-        public async Task<List<FeedbackResponseDto>> GetAllFeedbacksAsLandlord(int userId)
+        public async Task<List<Feedback>> GetAllFeedbacksAsLandlord(int userId)
         {
             var feedbacks = await _feedbackRepository.GetAllFeedbacksAsLandlord(userId);
-            var feedbackDtos = _mapper.Map<List<FeedbackResponseDto>>(feedbacks);
-            return feedbackDtos;
+            //var feedbackDtos = _mapper.Map<List<FeedbackResponseDto>>(feedbacks);
+            return feedbacks;
         }
 
-        public async Task<List<FeedbackResponseDto>> GetAllFeedbacksAsTenand(int userId)
+        public async Task<List<Feedback>> GetAllFeedbacksAsTenand(int userId)
         {
             var feedbacks = await _feedbackRepository.GetAllFeedbacksAsTenand(userId);
-            var feedbackDtos = _mapper.Map<List<FeedbackResponseDto>>(feedbacks);
-            return feedbackDtos;
+           // var feedbackDtos = _mapper.Map<List<FeedbackResponseDto>>(feedbacks);
+            return feedbacks;
         }
 
         public async Task<double> GetAverageRatingAsLandlord(int userId)

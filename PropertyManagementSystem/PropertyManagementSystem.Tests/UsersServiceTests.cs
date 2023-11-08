@@ -187,8 +187,6 @@ namespace PropertyManagementSystem.Tests
                 }
             };
 
-            var userService = new UserService(_userRepositoryMock.Object, _mapperMock.Object);
-
             _userRepositoryMock.Setup(repo => repo.GetAllUsers()).ReturnsAsync(expectedUsers);
 
             var result = await _userService.GetAllUsers();
